@@ -1,7 +1,8 @@
 # NAMT — Nuisance-Aware Muon Tomography
 
-Cosmic-muon material tomography posed directly on the detector hits (the
-measurement domain). The same hits are reconstructed in two channels:
+Cosmic-muon material tomography posed directly on the detector hits, with each
+muon's dominant nuisance handled by the means its instrument permits. The same
+hits are reconstructed in two channels:
 
 | channel | instrument (tier) | observable | output field |
 |---|---|---|---|
