@@ -9,23 +9,24 @@ from experiments.matrix import CAPS
 from mdmt.scenes import MAT, truth_mask
 
 ROWS = [
-    ("MLS-EM",          "mlsem",  "img",     "inv_x0"),
-    ("PoCA",            "poca",   "img",     "inv_x0"),
-    ("ASR",             "asr",    "img",     "inv_x0"),
-    ("MLS-EM + momentum (6-plane)", "mlsem_p", "img", "inv_x0"),
-    ("PoCA + momentum (6-plane)", "poca_p", "img", "inv_x0"),
-    ("ASR + momentum (6-plane)", "asr_p", "img", "inv_x0"),
-    ("MDMT-S (3-plane)", "rht_3p", "img",     "inv_x0"),
-    ("MDMT-S (4-plane)", "rht_s",  "img",     "inv_x0"),
-    ("MDMT-E (6-plane)", "rht_6p", "img_s",   "s"),
+    ("MLS-EM",               "mlsem",   "img",   "inv_x0"),
+    ("PoCA",                 "poca",    "img",   "inv_x0"),
+    ("ASR",                  "asr",     "img",   "inv_x0"),
+    ("MLS-EM (measured p)",  "mlsem_p", "img",   "inv_x0"),
+    ("PoCA (measured p)",    "poca_p",  "img",   "inv_x0"),
+    ("ASR (measured p)",     "asr_p",   "img",   "inv_x0"),
+    ("MDMT-S (3-plane)",     "rht_3p",  "img",   "inv_x0"),
+    ("MDMT-S (4-plane)",     "rht_s",   "img",   "inv_x0"),
+    ("Energy-loss statistic", "eloss",  "img",   "s"),
+    ("MDMT-E",               "rht_6p",  "img_s", "s"),
 ]
 LABELS = [r[0] for r in ROWS]
-GROUPS = [("Baselines (4-plane tracker)", LABELS[:3]),
-          ("Scattering baselines + momentum", LABELS[3:6]),
-          ("Ours\\,---\\,MDMT", LABELS[6:])]
-# main-paper lineup: baselines + tracker scattering (3- and 4-plane) + energy
-MAIN = ["PoCA", "ASR", "MLS-EM", "MDMT-S (3-plane)", "MDMT-S (4-plane)", "MDMT-E (6-plane)"]
-MAIN_GROUPS = [("Baselines (4-plane tracker)", MAIN[:3]), ("Ours\\,---\\,MDMT", MAIN[3:])]
+GROUPS = [("Baselines (tracker)", LABELS[:3]),
+          ("Scattering baselines with measured momentum", LABELS[3:6]),
+          ("MDMT-S (tracker)", LABELS[6:8]),
+          ("Energy channel", LABELS[8:])]
+MAIN = ["PoCA", "ASR", "MLS-EM", "MDMT-S (3-plane)", "MDMT-S (4-plane)", "MDMT-E"]
+MAIN_GROUPS = [("Baselines (tracker)", MAIN[:3]), ("MDMT", MAIN[3:])]
 MATS = ["pb", "water", "al"]    # display order: lead, water, aluminium
 BGS = ["sio2", "concrete"]
 

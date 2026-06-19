@@ -42,10 +42,10 @@ def img_from_stat(idx, n, vals, min_cov=25, stat="median"):
     return img.reshape(n, n)
 
 
-def poca_img(h, lz, vox):
+def poca_img(h, lz, vox, min_cov=25):
     th2, xy = derived(h, lz)
     idx, n = grid_index(xy, vox)
-    return img_from_stat(idx, n, th2, stat="median"), n
+    return img_from_stat(idx, n, th2, min_cov=min_cov, stat="median"), n
 
 
 def asr_img(h, lz, vox):
@@ -149,7 +149,11 @@ class _Family(Method):
 
 class PoCA(_Family):
     name = "poca"
-    fn = staticmethod(poca_img)
+
+    def reconstruct(self, hits, layer_z, sigma_pos, cal, vox, min_cov=25, **kw):
+        img, n = poca_img(hits, layer_z, vox, min_cov=min_cov)
+        gx = grid_axes(HALF, vox)
+        return {"img": img, "gx": gx, "gy": gx}
 
 
 class ASR(_Family):

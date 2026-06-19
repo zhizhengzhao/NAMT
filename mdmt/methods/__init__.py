@@ -6,9 +6,11 @@ from mdmt.methods.rht_6p import MDMTSpectro
 from mdmt.methods.asr_p import ASRMomentum
 from mdmt.methods.poca_p import PoCAMomentum
 from mdmt.methods.mlsem_p import MLSEMMomentum
+from mdmt.methods.eloss import EnergyLossStat
 
 REGISTRY = {m.name: m for m in (PoCA, ASR, MLSEM, ASRMomentum, PoCAMomentum,
-                                MLSEMMomentum, MDMTScatter3, MDMTScatter, MDMTSpectro)}
+                                MLSEMMomentum, MDMTScatter3, MDMTScatter, MDMTSpectro,
+                                EnergyLossStat)}
 
 
 def get(name, dev="cuda:0"):

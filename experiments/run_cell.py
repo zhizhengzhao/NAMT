@@ -1,6 +1,6 @@
 """Runs one (method, scene, cap) cell and saves the reconstruction to results/cells/.
 
-Usage: python experiments/run_cell.py --method rht_s --scene u_pb_sio2 [--cap 50000] [--seed 7] [--device cuda:1]
+Usage: python experiments/run_cell.py --method rht_s --scene u_pb_sio2 [--cap 50000] [--seed 7] [--device cuda:0]
 """
 import argparse
 import json
@@ -46,8 +46,13 @@ def main():
         cal = dict(np.load(calf, allow_pickle=False))
 
     hits, lz = data.load(method.tier, a.scene, cap=a.cap, seed=a.seed)
+    # single-point per-muon statistics fall below the default per-column
+    # coverage at the lowest exposure; use min_cov=10 there
+    kw = {}
+    if a.method in ("poca", "eloss") and 0 < a.cap <= 15000:
+        kw["min_cov"] = 10
     r = method.reconstruct(hits, lz, SIGMA_POS, cal, fvox, x0_sample=X0S[bg],
-                           img_vox=SCORE)
+                           img_vox=SCORE, **kw)
     tag = f"{a.method}_{a.scene}_cap{a.cap}_s{a.seed}"
     out = {"method": a.method, "scene": a.scene, "cap": a.cap,
            "seed": a.seed, "vox": fvox, "n": len(hits)}

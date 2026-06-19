@@ -1,6 +1,6 @@
 """Multi-GPU dispatcher over the experiment matrix.
 
-Usage: python experiments/dispatch.py [gpu,gpu,...]   (default 1..7)
+Usage: python experiments/dispatch.py [gpu,gpu,...]   (default 0; pass a comma-separated list to use more)
 """
 import os
 import queue
@@ -66,5 +66,5 @@ def main(gpus):
 
 if __name__ == "__main__":
     gpus = ([int(g) for g in sys.argv[1].split(",")]
-            if len(sys.argv) > 1 else [1, 2, 3, 4, 5, 6, 7])
+            if len(sys.argv) > 1 else [0])
     main(gpus)

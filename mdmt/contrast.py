@@ -35,7 +35,7 @@ class ScatterT:
             if zk < bot:
                 lever[k] = zk - zq
         lever = torch.as_tensor(lever, dtype=torch.float64, device=dev)
-        self.clever = torch.einsum("kc,kq->cq", self.c, lever)
+        self.c_lever = torch.einsum("kc,kq->cq", self.c, lever)
         self.zq = zq
         self.sig2 = float(max(sigma_pos, 0.05)) ** 2
         self.lam_bg = 1.0 / float(x0_sample)
@@ -67,7 +67,7 @@ class ScatterT:
             total = self.lam_bg + lam_line
         total = torch.clamp(total, min=1e-7)
         powq = total * self.wq[None, :] * (sec ** 3)[:, None]
-        cKfield = torch.einsum("cq,nq,dq->ncd", self.clever, powq, self.clever)
+        cKfield = torch.einsum("cq,nq,dq->ncd", self.c_lever, powq, self.c_lever)
         return self.cKbg[None] * (sec ** 3)[:, None, None] + cKfield
 
     def nll_t(self, prep, lam_line=None, g_per=None, nu_override=None):
