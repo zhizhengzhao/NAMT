@@ -1,0 +1,49 @@
+{
+  "data": {
+    "seeds": [42, 43, 44, 45, 46]
+  },
+  "conditions": {
+    "150k_1mm": {"event_count": 150000, "calibration": "1mm"},
+    "100k_1mm": {"event_count": 100000, "calibration": "1mm"},
+    "50k_1mm": {"event_count": 50000, "calibration": "1mm"},
+    "150k_2mm": {"event_count": 150000, "calibration": "2mm"},
+    "150k_3mm": {"event_count": 150000, "calibration": "3mm"}
+  },
+  "calibrations": {
+    "1mm": {"hit_resolution_mm": 1.0},
+    "2mm": {"hit_resolution_mm": 2.0},
+    "3mm": {"hit_resolution_mm": 3.0}
+  },
+  "reconstruction": {
+    "voxel_size_mm": 5.0,
+    "roi_half_width_mm": 120.0,
+    "minimum_coverage": 10
+  },
+  "namt": {
+    "momentum_quadrature_order": 256,
+    "optimizer_steps": 3000,
+    "learning_rate": 0.03,
+    "tv_penalty": "l1"
+  },
+  "methods": {
+    "poca": {"implementation": "poca"},
+    "asr_q75": {"implementation": "asr_q75"},
+    "mlsd_median": {"implementation": "mlsd_median", "iterations": 100},
+    "namt_3p": {
+      "implementation": "namt_3p_structured",
+      "calibration": "blank_3p.npz"
+    },
+    "namt_4p": {
+      "implementation": "namt_4p_structured",
+      "calibration": "blank_4p.npz"
+    }
+  },
+  "scenes": {
+    "u_pb_soil": {"tv": 10.0},
+    "u_pb_concrete": {"tv": 10.0},
+    "u_explosive_soil": {"tv": 50.0},
+    "u_explosive_concrete": {"tv": 40.0},
+    "u_void_soil": {"tv": 50.0},
+    "u_void_concrete": {"tv": 40.0}
+  }
+}

@@ -1,0 +1,28 @@
+schema: material_schema.yaml
+
+---
+
+Na: {type: element, from: nist}
+Al: {type: element, from: nist}
+Si: {type: element, from: nist}
+K:  {type: element, from: nist}
+Ca: {type: element, from: nist}
+Fe: {type: element, from: nist}
+
+sand_pnnl:
+  density: 1.7 g/cm3
+  components:
+    - [element, H,  0.007833]
+    - [element, C,  0.003360]
+    - [element, O,  0.536153]
+    - [element, Na, 0.017063]
+    - [element, Al, 0.034401]
+    - [element, Si, 0.365067]
+    - [element, K,  0.011622]
+    - [element, Ca, 0.011212]
+    - [element, Fe, 0.013289]
+
+potato_sio2:  {alias: sand_pnnl, color: yellow, alpha: 0.1}
+potato_water: {alias: sand_pnnl, color: yellow, alpha: 0.1}
+
+---

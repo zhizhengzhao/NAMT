@@ -1,0 +1,8 @@
+schema: material_schema.yaml
+
+---
+
+G4_AIR: {from: nist}
+
+potato_sio2:  {alias: G4_AIR, color: white, alpha: 0.04}
+potato_water: {alias: G4_AIR, color: white, alpha: 0.04}
