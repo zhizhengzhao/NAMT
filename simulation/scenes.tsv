@@ -1,0 +1,7 @@
+2|u_pb_soil|bench_bg_sand.yaml|G4_Pb
+5|u_explosive_soil|bench_bg_sand.yaml|rdx_explosive
+6|u_void_soil|bench_bg_sand.yaml|G4_AIR
+7|u_pb_concrete|bench_bg_concrete.yaml|G4_Pb
+10|u_explosive_concrete|bench_bg_concrete.yaml|rdx_explosive
+11|u_void_concrete|bench_bg_concrete.yaml|G4_AIR
+12|blank_air|bench_bg_air.yaml|-

@@ -1,0 +1,8 @@
+__pycache__/
+*.py[cod]
+.venv/
+outputs/
+simulation/build/
+simulation/work/
+new_data/
+.DS_Store
